@@ -110,11 +110,31 @@ export function Navbar() {
         </motion.div>
       </motion.div>
 
-      {/* macOS-style Dock Sidebar */}
+      {/* Theme Toggle in top right */}
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-6 right-6 z-50"
+      >
+        <motion.button
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className="bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {theme === "light" ? (
+            <Moon className="w-5 h-5 text-foreground" />
+          ) : (
+            <Sun className="w-5 h-5 text-foreground" />
+          )}
+        </motion.button>
+      </motion.div>
+
+      {/* macOS-style Dock Sidebar - positioned higher */}
       <motion.div
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50"
+        className="fixed right-6 top-1/3 z-50"
       >
         <motion.div
           className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-3 shadow-2xl"
@@ -136,7 +156,7 @@ export function Navbar() {
                 <div
                   className={`
                   w-12 h-12 rounded-xl flex items-center justify-center
-                  bg-gradient-to-br ${item.gradient} 
+                  bg-gradient-to-br ${item.gradient}
                   shadow-lg group-hover:shadow-xl transition-all duration-300
                   ${activeSection === item.id ? "ring-2 ring-white/50 scale-110" : ""}
                 `}
@@ -148,13 +168,13 @@ export function Navbar() {
                 <motion.div
                   initial={{ opacity: 0, x: 10 }}
                   whileHover={{ opacity: 1, x: 0 }}
-                  className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 
+                  className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2
                            bg-black/90 text-white text-sm px-3 py-1 rounded-lg
                            whitespace-nowrap pointer-events-none"
                 >
                   {item.label}
                   <div
-                    className="absolute left-full top-1/2 transform -translate-y-1/2 
+                    className="absolute left-full top-1/2 transform -translate-y-1/2
                                 border-l-4 border-l-black/90 border-y-4 border-y-transparent"
                   />
                 </motion.div>
@@ -163,50 +183,12 @@ export function Navbar() {
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeIndicator"
-                    className="absolute -right-1 top-1/2 transform -translate-y-1/2 
+                    className="absolute -right-1 top-1/2 transform -translate-y-1/2
                              w-1 h-6 bg-white rounded-full"
                   />
                 )}
               </motion.button>
             ))}
-
-            {/* Divider */}
-            <div className="h-px bg-white/20 my-2" />
-
-            {/* Theme Toggle */}
-            <motion.button
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="relative group"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center
-                           bg-gradient-to-br from-gray-600 to-gray-800 
-                           shadow-lg group-hover:shadow-xl transition-all duration-300"
-              >
-                {theme === "light" ? (
-                  <Moon className="w-6 h-6 text-white" />
-                ) : (
-                  <Sun className="w-6 h-6 text-white" />
-                )}
-              </div>
-
-              {/* Tooltip */}
-              <motion.div
-                initial={{ opacity: 0, x: 10 }}
-                whileHover={{ opacity: 1, x: 0 }}
-                className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 
-                         bg-black/90 text-white text-sm px-3 py-1 rounded-lg
-                         whitespace-nowrap pointer-events-none"
-              >
-                {theme === "light" ? "Dark Mode" : "Light Mode"}
-                <div
-                  className="absolute left-full top-1/2 transform -translate-y-1/2 
-                              border-l-4 border-l-black/90 border-y-4 border-y-transparent"
-                />
-              </motion.div>
-            </motion.button>
           </div>
         </motion.div>
       </motion.div>
