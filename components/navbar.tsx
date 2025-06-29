@@ -17,7 +17,7 @@ import { useTheme } from "next-themes";
 export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const { theme, setTheme } = "next-themes";
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
