@@ -50,7 +50,11 @@ export function HeroSection() {
             className="mb-8"
           >
             <Avatar className="w-32 h-32 mx-auto ring-4 ring-primary/20">
-              <AvatarImage src="" alt="Jakuan Ahmed" />
+              <AvatarImage
+                src="https://cdn.builder.io/api/v1/image/assets%2F69ebd979b8fa48048a9ff3604a693ab2%2Fc690791e856a43048c1b40ba13054ab6?format=webp&width=800"
+                alt="Jakuan Ahmed"
+                className="object-cover"
+              />
               <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
                 JA
               </AvatarFallback>
