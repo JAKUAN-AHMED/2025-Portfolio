@@ -264,30 +264,26 @@ export function AchievementsSection() {
                     platform: "Codeforces",
                     rank: "Specialist",
                     rating: "1400+",
-                    color: "bg-red-500",
+                    color: "bg-white",
                     logo: (
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-6 h-6"
-                        fill="currentColor"
-                      >
-                        <path d="M4.5 7.5A1.5 1.5 0 0 1 6 9v10.5A1.5 1.5 0 0 1 4.5 21h-3A1.5 1.5 0 0 1 0 19.5V9a1.5 1.5 0 0 1 1.5-1.5h3zm6-6A1.5 1.5 0 0 1 12 3v16.5A1.5 1.5 0 0 1 10.5 21h-3A1.5 1.5 0 0 1 6 19.5V3a1.5 1.5 0 0 1 1.5-1.5h3zm6 6A1.5 1.5 0 0 1 18 9v10.5A1.5 1.5 0 0 1 16.5 21h-3A1.5 1.5 0 0 1 12 19.5V9a1.5 1.5 0 0 1 1.5-1.5h3zm6-3A1.5 1.5 0 0 1 24 6v12A1.5 1.5 0 0 1 22.5 19.5h-3A1.5 1.5 0 0 1 18 18V6a1.5 1.5 0 0 1 1.5-1.5h3z" />
-                      </svg>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F69ebd979b8fa48048a9ff3604a693ab2%2Ff5676f3eceb345209e8664c7f4cacd44?format=webp&width=800"
+                        alt="Codeforces"
+                        className="w-8 h-8 object-contain"
+                      />
                     ),
                   },
                   {
                     platform: "HackerRank",
                     rank: "5-Star",
                     rating: "Problem Solver",
-                    color: "bg-green-500",
+                    color: "bg-white",
                     logo: (
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-6 h-6"
-                        fill="currentColor"
-                      >
-                        <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm2.5 18.5h-5L12 15l2.5 3.5zM15 12l-3-4.5L9 12l3 4.5L15 12z" />
-                      </svg>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F69ebd979b8fa48048a9ff3604a693ab2%2F099d6a2baed34eb184b9a403b1d1fce4?format=webp&width=800"
+                        alt="HackerRank"
+                        className="w-8 h-8 object-contain"
+                      />
                     ),
                   },
                   {
