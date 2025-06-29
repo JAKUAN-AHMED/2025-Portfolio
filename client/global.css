@@ -54,6 +54,14 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Portfolio custom colors */
+    --hero-gradient-from: 120 100% 85%;
+    --hero-gradient-to: 60 100% 85%;
+    --skills-bg: 220 26% 8%;
+    --skills-card-bg: 220 26% 12%;
+    --skills-text: 0 0% 100%;
+    --skills-text-secondary: 220 13% 60%;
   }
 
   .dark {
@@ -92,6 +100,12 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Portfolio dark mode overrides */
+    --hero-gradient-from: 120 50% 25%;
+    --hero-gradient-to: 60 50% 25%;
+    --skills-bg: 220 26% 8%;
+    --skills-card-bg: 220 26% 12%;
   }
 }
 

@@ -57,6 +57,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        hero: {
+          "gradient-from": "hsl(var(--hero-gradient-from))",
+          "gradient-to": "hsl(var(--hero-gradient-to))",
+        },
+        skills: {
+          bg: "hsl(var(--skills-bg))",
+          "card-bg": "hsl(var(--skills-card-bg))",
+          text: "hsl(var(--skills-text))",
+          "text-secondary": "hsl(var(--skills-text-secondary))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
