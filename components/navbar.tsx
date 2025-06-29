@@ -2,31 +2,92 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import {
+  Moon,
+  Sun,
+  Home,
+  User,
+  Briefcase,
+  Trophy,
+  Mail,
+  GraduationCap,
+} from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const [mounted, setMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [activeSection, setActiveSection] = useState("hero");
+  const { theme, setTheme } = "next-themes";
 
   useEffect(() => {
     setMounted(true);
+
+    // Observer for active section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   const navItems = [
-    { href: "#hero", label: "Home" },
-    { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
-    { href: "#achievements", label: "Achievements" },
-    { href: "#contact", label: "Contact" },
+    {
+      href: "#hero",
+      label: "Home",
+      icon: Home,
+      gradient: "from-blue-500 to-indigo-600",
+      id: "hero",
+    },
+    {
+      href: "#skills",
+      label: "Skills",
+      icon: User,
+      gradient: "from-purple-500 to-pink-600",
+      id: "skills",
+    },
+    {
+      href: "#projects",
+      label: "Projects",
+      icon: Briefcase,
+      gradient: "from-green-500 to-emerald-600",
+      id: "projects",
+    },
+    {
+      href: "#achievements",
+      label: "Achievements",
+      icon: Trophy,
+      gradient: "from-yellow-500 to-orange-600",
+      id: "achievements",
+    },
+    {
+      href: "#teaching",
+      label: "Teaching",
+      icon: GraduationCap,
+      gradient: "from-red-500 to-rose-600",
+      id: "teaching",
+    },
+    {
+      href: "#contact",
+      label: "Contact",
+      icon: Mail,
+      gradient: "from-cyan-500 to-blue-600",
+      id: "contact",
+    },
   ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
-    setIsOpen(false);
   };
 
   if (!mounted) {
@@ -34,93 +95,121 @@ export function Navbar() {
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b"
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-xl font-bold gradient-text"
-          >
-            Jakuan Ahmed
-          </motion.div>
+    <>
+      {/* Logo in top left */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed top-6 left-6 z-50"
+      >
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="text-xl font-bold gradient-text bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20"
+        >
+          Jakuan Ahmed
+        </motion.div>
+      </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
+      {/* macOS-style Dock Sidebar */}
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50"
+      >
+        <motion.div
+          className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-3 shadow-2xl"
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="flex flex-col space-y-3">
+            {navItems.map((item, index) => (
+              <motion.button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="relative group"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                {item.label}
-              </button>
-            ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
-          </div>
+                {/* App Icon */}
+                <div
+                  className={`
+                  w-12 h-12 rounded-xl flex items-center justify-center
+                  bg-gradient-to-br ${item.gradient} 
+                  shadow-lg group-hover:shadow-xl transition-all duration-300
+                  ${activeSection === item.id ? "ring-2 ring-white/50 scale-110" : ""}
+                `}
+                >
+                  <item.icon className="w-6 h-6 text-white" />
+                </div>
 
-          {/* Mobile Navigation */}
-          <div className="md:hidden flex items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t bg-background"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors w-full text-left"
+                {/* Tooltip */}
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  whileHover={{ opacity: 1, x: 0 }}
+                  className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 
+                           bg-black/90 text-white text-sm px-3 py-1 rounded-lg
+                           whitespace-nowrap pointer-events-none"
                 >
                   {item.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </motion.nav>
+                  <div
+                    className="absolute left-full top-1/2 transform -translate-y-1/2 
+                                border-l-4 border-l-black/90 border-y-4 border-y-transparent"
+                  />
+                </motion.div>
+
+                {/* Active Indicator */}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute -right-1 top-1/2 transform -translate-y-1/2 
+                             w-1 h-6 bg-white rounded-full"
+                  />
+                )}
+              </motion.button>
+            ))}
+
+            {/* Divider */}
+            <div className="h-px bg-white/20 my-2" />
+
+            {/* Theme Toggle */}
+            <motion.button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="relative group"
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center
+                           bg-gradient-to-br from-gray-600 to-gray-800 
+                           shadow-lg group-hover:shadow-xl transition-all duration-300"
+              >
+                {theme === "light" ? (
+                  <Moon className="w-6 h-6 text-white" />
+                ) : (
+                  <Sun className="w-6 h-6 text-white" />
+                )}
+              </div>
+
+              {/* Tooltip */}
+              <motion.div
+                initial={{ opacity: 0, x: 10 }}
+                whileHover={{ opacity: 1, x: 0 }}
+                className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 
+                         bg-black/90 text-white text-sm px-3 py-1 rounded-lg
+                         whitespace-nowrap pointer-events-none"
+              >
+                {theme === "light" ? "Dark Mode" : "Light Mode"}
+                <div
+                  className="absolute left-full top-1/2 transform -translate-y-1/2 
+                              border-l-4 border-l-black/90 border-y-4 border-y-transparent"
+                />
+              </motion.div>
+            </motion.button>
+          </div>
+        </motion.div>
+      </motion.div>
+    </>
   );
 }
