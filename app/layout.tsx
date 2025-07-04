@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jakuan Ahmed" }],
   creator: "Jakuan Ahmed",
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
