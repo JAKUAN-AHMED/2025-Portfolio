@@ -5,8 +5,28 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function HeroSection() {
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 1200,
+    height: 800,
+  });
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
