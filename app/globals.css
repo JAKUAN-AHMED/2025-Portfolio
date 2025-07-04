@@ -26,12 +26,12 @@
     --radius: 0.5rem;
 
     /* Portfolio Theme Colors */
-    --hero-gradient-from: 238 94% 67%;
-    --hero-gradient-to: 158 64% 52%;
-    --skills-bg: 222.2 84% 4.9%;
-    --skills-card-bg: 217.2 32.6% 17.5%;
-    --skills-text: 210 40% 98%;
-    --skills-text-secondary: 215 20.2% 65.1%;
+    --hero-gradient-from: 120 100% 85%;
+    --hero-gradient-to: 60 100% 85%;
+    --skills-bg: 220 26% 8%;
+    --skills-card-bg: 220 26% 12%;
+    --skills-text: 0 0% 100%;
+    --skills-text-secondary: 220 13% 60%;
   }
 
   .dark {
@@ -56,10 +56,10 @@
     --ring: 212.7 26.8% 83.9%;
 
     /* Dark mode portfolio colors */
-    --hero-gradient-from: 238 94% 67%;
-    --hero-gradient-to: 158 64% 52%;
-    --skills-bg: 222.2 84% 4.9%;
-    --skills-card-bg: 217.2 32.6% 17.5%;
+    --hero-gradient-from: 120 50% 25%;
+    --hero-gradient-to: 60 50% 25%;
+    --skills-bg: 220 26% 8%;
+    --skills-card-bg: 220 26% 12%;
   }
 }
 
