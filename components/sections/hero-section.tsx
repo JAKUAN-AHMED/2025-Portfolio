@@ -44,8 +44,8 @@ export function HeroSection() {
             key={i}
             className="absolute w-2 h-2 bg-primary/20 rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * windowDimensions.width,
+              y: Math.random() * windowDimensions.height,
             }}
             animate={{
               y: [0, -30, 0],
