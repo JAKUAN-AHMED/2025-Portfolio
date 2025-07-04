@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { HeroSection } from "@/components/sections/hero-section";
 import { SkillsCloud } from "@/components/sections/skills-cloud";
@@ -19,22 +20,32 @@ const containerVariants = {
   },
 };
 
+function LoadingSpinner() {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        <HeroSection />
-        <SkillsCloud />
-        <FeaturedProjects />
-        <AchievementsSection />
-        <TeachingSection />
-        <ContactSection />
-      </motion.div>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Navbar />
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <HeroSection />
+          <SkillsCloud />
+          <FeaturedProjects />
+          <AchievementsSection />
+          <TeachingSection />
+          <ContactSection />
+        </motion.div>
+      </Suspense>
     </main>
   );
 }
