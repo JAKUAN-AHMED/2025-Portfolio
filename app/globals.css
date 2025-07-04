@@ -56,10 +56,10 @@
     --ring: 212.7 26.8% 83.9%;
 
     /* Dark mode portfolio colors */
-    --hero-gradient-from: 238 94% 67%;
-    --hero-gradient-to: 158 64% 52%;
-    --skills-bg: 222.2 84% 4.9%;
-    --skills-card-bg: 217.2 32.6% 17.5%;
+    --hero-gradient-from: 120 50% 25%;
+    --hero-gradient-to: 60 50% 25%;
+    --skills-bg: 220 26% 8%;
+    --skills-card-bg: 220 26% 12%;
   }
 }
 
